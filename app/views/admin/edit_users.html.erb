@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h3 class="h3 text-center">Deres firmanøkkel er : <small><%= current_user.company.key %></small></h3>
+      <div class="panel panel-primary">
+        <div class="panel-heading">Brukeradministrasjon</div>
+        <table class="table table-striped">
+          <div class="input-group">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-search"></i></span>
+            <%= form_for admin_edit_users_path, method: :get do %>
+                <%= search_field "name", :search_input, {class: "form-control"} %>
+            <% end %>
+
+          </div>
+
+          <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          </thead>
+          <tbody>
+          <% @users.each do |u| %>
+              <tr>
+                <td><%= u.first_name %></td>
+                <td><%= u.last_name %></td>
+                <td><%= link_to "Rediger", admin_edit_user_path(id: u.id), class: "btn btn-success" %></td>
+                <td><%= link_to "Slett", admin_delete_user_path(id: u.id), class: "btn btn-info",data: {confirm: "Er du helt sikker på at du vil slette brukeren?"} %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+window.setTimeout(function () {
+    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+        $(this).remove();
+    });
+
+}, 3000);
+
+
+startCountdown = function (nextlottery) {
+    var date = nextlottery * 1000;
+    $('.timer').countdown(date, function (event) {
+        $(this).find('.days').text(event.offset.totalDays);
+        $(this).find('.hours').text(event.offset.hours);
+        $(this).find('.minutes').text(event.offset.minutes);
+        $(this).find('.seconds').text(event.offset.seconds);
+    }).on('finish.countdown', function (event) {
+        // redirect til riktig trekning
+//        alert("test")
+    });
+};
+
+deleteAlert = function(u) {
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel plx!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        } else {
+            swal("Cancelled", "Your imaginary file is safe :)", "error");
+        }
+    });
+};

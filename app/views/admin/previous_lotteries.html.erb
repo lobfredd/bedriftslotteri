@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">Tidligere trekninger</div>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Når</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @previous_lotteries.each do |f| %>
+
+              <tr>
+                <td><%= prettify_admin_date(f.start_date) %></td>
+                <td>
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#previousLotteryModal">
+                    Vis
+                  </button>
+                  <div class="modal fade" id="previousLotteryModal" tabindex="-1" role="dialog"
+                       aria-labelledby="previousLotteryModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Steng">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="previousLotteryLabel">Viser tidligere trekning</h4>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table table-striped">
+                            <thead>
+                            <tr>
+                            <th>Total lodd</th>
+                            <th>Pris per lodd</th>
+                            <th>Antall solgte</th>
+                            <th>Omsetning</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td><%= f.number_of_tickets %></td>
+                              <td><%= f.price_per_ticket %></td>
+                              <td><%= f.sold_tickets %></td>
+                              <td><%= f.sold_tickets * f.price_per_ticket %>,-</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <ul class="list-inline">
+                            <li><strong>Premier: </strong></li>
+                            <% f.awards.map do |award| %>
+                            <li><%= award.name %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

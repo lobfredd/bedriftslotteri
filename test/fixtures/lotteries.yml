@@ -1,0 +1,90 @@
+lottery1:
+  lottery_name: lol1
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.yesterday %>
+  company: testCamel
+
+lottery2:
+  lottery_name: lol2
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.yesterday %>
+  company: testCamel
+
+lottery3:
+  lottery_name: lol3
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.yesterday %>
+  company: testCamel
+
+lottery4:
+  lottery_name: lol4
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery5:
+  lottery_name: lol5
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery6:
+  lottery_name: lol16
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery7:
+  lottery_name: lol7
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery8:
+  lottery_name: lol8
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery9:
+  lottery_name: lol9
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery10:
+  lottery_name: lol10
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery11:
+  lottery_name: lol11
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel
+
+lottery12:
+  lottery_name: lol12
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Date.today + 1.day %>
+  company: testCamel2
+
+lottery13:
+  lottery_name: lol13
+  number_of_tickets: 22
+  price_per_ticket: 22
+  start_date: <%= Time.now %>
+  company: testCamel3

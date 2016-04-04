@@ -1,0 +1,297 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+*/
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "lottery";
+@import "pages";
+@import 'contactform';
+@import 'bootstrap-social';
+@import 'admin';
+@import 'sweetalert';
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+
+body {
+  font-family: Lato, sans-serif;
+}
+
+.btn-success{
+  background: #55951d;
+}
+
+.tooltip-inner {
+    white-space:pre-wrap;
+}
+
+.footerRow{
+  margin-top: 30px;
+}
+
+#loginButton{
+  border: 1px solid #1D630C;
+}
+#customContainer4{
+  background: #cacaca;
+}
+
+.customFooterRow{
+  margin-bottom: 50px;
+}
+
+.footer {
+  bottom:0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 250px;
+  background-color: #55951d;
+  color: #FFFFF4;
+}
+
+$bgDefault      : #55951d;
+$bgHighlight    : #1d630c;
+$colDefault     : #ffffff;
+$colHighlight   : #ffffff;
+$dropDown       : true;
+
+.navbar{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li > a {
+            color: $colDefault;
+            &:hover,  &:focus {
+              color: $colHighlight;
+              background-color: $bgHighlight; }}
+          .divider {
+            background-color: $bgHighlight;}}}
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+.img-custom{
+  height: 35px;
+  width: 35px;
+}
+.navbar-brand > img{
+  display: inline;
+  margin-right: 5px;
+}
+
+
+.custom-brand{
+  padding: 8px 15px;
+}
+
+#container2{
+  background: #cacaca;
+  //image_url('space_grey.png');
+  //background-size: contain;
+  //background-repeat: no-repeat;
+  //background-position: right;
+}
+
+#container3{
+  background: #cacaca;
+}
+
+.rowSeparator{
+  background: #cacaca;
+
+}
+
+.customRow{
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.customRow2{
+  margin: 40px 0 40px 0;
+}
+
+#bedriftsmail{
+  text-decoration: none;
+  color: #fff;
+}
+
+.headers{
+  font-size: 40px;
+}
+
+#signinmenu {
+  padding: 5px 10px 5px 10px;
+}
+
+#dropdownregisterlink {
+  color: #fff
+}
+
+.coming-soon {
+  margin: 0 auto;
+  text-align: center;
+
+}
+
+.inner-bg {
+  padding-bottom: 15px;
+  background: image_path('pattern-3.png');
+  //-moz-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+  //-webkit-box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+  //box-shadow: 0 1px 5px 0 rgba(0,0,0,.3) inset;
+}
+
+.coming-soon h2 {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}
+
+#firstBuyBtn{
+  padding: 25px 50px 25px 50px;
+}
+
+.coming-soon p {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 36px;
+  text-shadow: 0 1px 7px rgba(0,0,0,.2);
+}
+
+.timer {
+  margin-top: 40px;
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(0,0,0,.1);
+}
+
+.timer .days-wrapper,
+.timer .hours-wrapper,
+.timer .minutes-wrapper,
+.timer .seconds-wrapper {
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  margin: 0 10px;
+  padding-top: 20px;
+  background: #2d2d2d; /* browsers that don't support rgba */
+  background: rgba(45, 45, 45, 0.7);
+  font-size: 18px;
+  line-height: 22px;
+  -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+}
+
+.timer .days-wrapper:hover,
+.timer .hours-wrapper:hover,
+.timer .minutes-wrapper:hover,
+.timer .seconds-wrapper:hover {
+  background: #e75967;
+  text-shadow: none;
+}
+
+.timer .days,
+.timer .hours,
+.timer .minutes,
+.timer .seconds {
+  font-size: 80px;
+  line-height: 90px;
+}
+
+.jumbotron{
+  padding: 78px 0;
+}
+
+/***** Media Queries *****/
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .timer .days-wrapper,
+  .timer .hours-wrapper,
+  .timer .minutes-wrapper,
+  .timer .seconds-wrapper { width: 140px; height: 140px; margin: 0 7px; }
+
+  .timer .days,
+  .timer .hours,
+  .timer .minutes,
+  .timer .seconds { font-size: 60px; line-height: 70px; }
+
+}
+
+@media (max-width: 767px) {
+
+  .logo h1 { text-align: center; }
+  .call-us { padding-bottom: 7px; text-align: center; }
+
+  .inner-bg { padding: 45px 0 50px 0; }
+
+  .coming-soon h2 { font-size: 36px; }
+
+  .timer .days-wrapper,
+  .timer .hours-wrapper,
+  .timer .minutes-wrapper,
+  .timer .seconds-wrapper { width: 140px; height: 140px; margin: 7px; }
+
+  .timer .days,
+  .timer .hours,
+  .timer .minutes,
+  .timer .seconds { font-size: 60px; line-height: 70px; }
+
+  .subscribe h3 { font-size: 28px; }
+  .subscribe form input.subscribe-email, .subscribe form button { width: 100%; }
+
+}
+
+

@@ -1,0 +1,187 @@
+// Place all the styles related to the lottery controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#buyTicketLbl {
+  margin-right: 35px;
+}
+
+.customP {
+  margin-bottom: 55px;
+}
+
+.customContactInfoParagraph{
+
+}
+
+.tile-progress {
+  background-color: #303641;
+  color: #fff;
+  border-radius: 5%;
+}
+
+.tile-progress {
+  background: #00a65b;
+  color: #fff;
+  margin-bottom: 20px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+.tile-progress .tile-header {
+  padding: 15px 20px;
+  padding-bottom: 40px;
+}
+
+.tile-progress .tile-progressbar {
+  height: 2px;
+  background: rgba(0, 0, 0, 0.18);
+  margin: 0;
+}
+
+.tile-progress .tile-progressbar span {
+  background: #fff;
+}
+
+.tile-progress .tile-progressbar span {
+  display: block;
+  background: #fff;
+  width: 0;
+  height: 100%;
+  -webkit-transition: all 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  -moz-transition: all 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  -o-transition: all 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+  transition: all 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+
+.tile-progress .tile-footer {
+  padding: 20px;
+  text-align: right;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 0 0 3px 3px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0 0 3px 3px;
+  -moz-background-clip: padding;
+  border-radius: 10% 0 10% 0;
+  background-clip: padding-box;
+}
+
+.tile-progress.tile-red {
+  background-color: #C75C5C;
+  color: #fff;
+}
+
+.tile-progress {
+  background-color: #4F5D73;
+  color: #fff;
+}
+
+.tile-progress.tile-blue {
+  background-color: #E0995E;
+  color: #fff;
+}
+
+.tile-progress.tile-aqua {
+  background-color: #77B3D4;
+  color: #fff;
+}
+
+.tile-progress.tile-green {
+  background-color: #00a65a;
+  color: #fff;
+}
+
+.tile-progress.tile-cyan {
+  background-color: #00b29e;
+  color: #fff;
+}
+
+.tile-progress.tile-purple {
+  background-color: #ba79cb;
+  color: #fff;
+}
+
+.tile-progress.tile-pink {
+  background-color: #ec3b83;
+  color: #fff;
+}
+
+.navbar-why-you-so-small > .navbar-collapse {
+  background-color: rgba(51, 51, 51, 0.8);
+}
+
+.progress-bar {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.progress-bar > .progress-type {
+  padding-left: 10px;
+}
+
+.progress-meter {
+  min-height: 15px;
+  border-bottom: 2px solid rgb(160, 160, 160);
+}
+
+.progress-meter > .meter {
+  position: relative;
+  float: left;
+  min-height: 15px;
+  border-width: 0px;
+  border-style: solid;
+  border-color: rgb(160, 160, 160);
+}
+
+.progress-meter > .meter-left {
+  border-left-width: 2px;
+}
+
+.progress-meter > .meter-right {
+  float: right;
+  border-right-width: 2px;
+}
+
+.progress-meter > .meter-right:last-child {
+  border-left-width: 2px;
+}
+
+.progress-meter > .meter > .meter-text {
+  position: absolute;
+  display: inline-block;
+  bottom: -20px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: rgb(160, 160, 160);
+  text-align: left;
+}
+
+.progress-meter > .meter.meter-right > .meter-text {
+  text-align: right;
+}
+
+.progress {
+  position: relative;
+  height: 25px;
+}
+
+.progress > .progress-type {
+  position: absolute;
+  left: 0px;
+  font-weight: 800;
+  padding: 3px 30px 2px 10px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(151, 88, 23, 0.2);
+}
+
+.progress > .progress-completed {
+  position: absolute;
+  right: 0px;
+  font-weight: 800;
+  padding: 3px 10px 2px;
+}

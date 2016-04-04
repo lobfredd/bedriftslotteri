@@ -1,0 +1,20 @@
+// Place all the styles related to the Admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new_lottery{
+  padding: 10px;
+}
+
+.edit_form{
+  padding: 10px;
+}
+
+@media(min-width: 1200px){
+  .customButtonForLottery{
+    padding: 52px 16px;
+  }
+}
+
+
+

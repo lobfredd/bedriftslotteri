@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Registrer bedrift
+        </div>
+        <div class="panel-body">
+          <%= form_for(@user, url: newcompany_path) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="form-group">
+                <%= label_tag "Firmanavn" %><br/>
+                <%= text_field_tag :company_name, nil, value: params[:company_name], autofocus: true, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label "Administrators fornavn" %><br/>
+                <%= f.text_field :first_name, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label "Administrators etternavn" %><br/>
+                <%= f.text_field :last_name, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :email %><br/>
+                <%= f.email_field :email, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password %>
+                <% if @validatable %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br/>
+                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password_confirmation %><br/>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Registrer", class: "btn btn-success" %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>

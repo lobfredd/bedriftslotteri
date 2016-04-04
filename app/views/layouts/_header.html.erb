@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand custom-brand" href="<%= root_path %>"><img class="img-custom" src="<%= display_logo %>"><%= display_company_name %>
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <% unless user_signed_in? %>
+              <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to("Hjem", root_path) %></li>
+              <li class="<%= 'active' if current_page?(hjelp_path) %>"><%= link_to("Hjelp", hjelp_path) %></li>
+
+          <% else %>
+              <% if get_user_role == 'company' %>
+                  <li class="<%= 'active' if current_page?(admin_path) %>"><%= link_to("Hjem", admin_path) %></li>
+              <% elsif get_user_role == 'user' %>
+                  <li class="<%= 'active' if current_page?(lottery_index_path) %>"><%= link_to("Hjem", lottery_index_path) %></li>
+              <% end %>
+          <% end %>
+          <li class="<%= 'active' if current_page?(kontakt_path) %>"><%= link_to("Kontakt", kontakt_path) %></li>
+          <% unless user_signed_in? %>
+              <li id=loginButton" class="<%= 'active' if current_page?(new_user_session_path) %>"><%= link_to("Logg inn", new_user_session_path) %></li>
+          <% end %>
+          <li class="dropdown">
+            <% if user_signed_in? %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <%= display_user_name %><span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <% if get_user_role != "company" %>
+                      <li><%= link_to("Min side", minside_path) %></li>
+                  <% else %>
+                      <li><%= link_to("Brukeroversikt", admin_edit_users_path) %></li>
+                      <li><%= link_to("Tidligere trekninger", admin_previous_lottery_path) %></li>
+                  <% end %>
+                  <li><%= link_to("Logg ut", destroy_user_session_path, :method => :delete) %></li>
+                </ul>
+
+                </ul>
+            <% end %>
+            </ul>
+            </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+</nav>
+

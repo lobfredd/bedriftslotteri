@@ -1,0 +1,159 @@
+<% provide(:title, "Forside") %>
+<div class="container">
+  <div class="row">
+    <!-- start left panel -->
+    <div class="col-lg-6">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Fremtidige trekninger</div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Når</th>
+            <th>Lodd</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @upcoming_lotteries.each do |f| %>
+              <tr>
+                <td class="col-sm-7"><%= prettify_admin_date(f.start_date) %></td>
+                <td class="col-sm-2"><%= f.number_of_tickets %></td>
+                <td class="col-sm-1"><%= link_to "Start nå", admin_finish_lottery_path(id: f.id), class: "btn btn-sm btn-success" %></td>
+                <td class="col-sm-1"><%= link_to "Rediger", admin_edit_lottery_path(id: f.id), class: "btn btn-sm btn-info" %></td>
+                <td class="col-sm-1"><%= link_to "Slett", admin_delete_lottery_path(id: f.id), class: "btn btn-sm btn-danger" %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- end left panel -->
+
+    <div class="col-lg-2">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-info customButtonForLottery center-block" data-toggle="modal" data-target="#myModal">
+        Opprett ny trekning
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Steng">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Opprett ny trekning</h4>
+          </div>
+          <%= form_for @lottery, url: admin_path, html: {class: "form"} do |f| %>
+              <div class="modal-body">
+                <div class="form-group">
+                  <%= f.label "Antall Lodd", class: "control-label" %>
+                  <%= f.number_field :number_of_tickets, class: "form-control", required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label "Pris per lodd", class: "control-label" %>
+                  <%= f.number_field :price_per_ticket, class: "form-control", required: true %>
+                </div>
+                <div class="form-group">
+                  <%= f.label "Startdato", class: "control-label" %>
+                  <%= f.datetime_select :start_date, class: "form-control" %>
+                </div>
+                <div class="form-group awards">
+                  <%= f.label "Premier", class: "control-label" %>
+                  <%= text_field_tag 'awards[]', nil, class: "form-control award", required: true, placeholder: "Premietittel.." %>
+                </div>
+                <%= link_to "Legg til premiefelt", "#", onclick: "addAwardField()", class: "btn btn-success" %>
+              </div>
+              <div class="modal-footer">
+                <div class="form-group">
+                  <button type="button" class="btn btn-warning" data-dismiss="modal">Lukk</button>
+                  <%= f.submit class: "btn btn-info", value: "Opprett trekning" %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Tre siste trekninger</div>
+
+        <!-- Table -->
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Når</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @previous_lotteries.each do |f| %>
+              <tr>
+                <td class="col-sm-7"><%= prettify_admin_date(f.start_date) %></td>
+                <td class="col-sm-3"><%= link_to "Vis på storskjerm", current_lottery_path(id: f.id), class: "btn btn-sm btn-danger" %></td>
+
+                <td>
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#thisLotteryModal">
+                    Vis
+                  </button>
+                  <div class="modal fade" id="thisLotteryModal" tabindex="-1" role="dialog"
+                       aria-labelledby="previousLotteryModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Steng">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="thisLotteryLabel">Viser tidligere trekning</h4>
+                        </div>
+                        <div class="modal-body">
+                          <table class="table table-striped">
+                            <thead>
+                            <tr>
+                              <th>Total lodd</th>
+                              <th>Pris per lodd</th>
+                              <th>Antall solgte</th>
+                              <th>Omsetning</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td><%= f.number_of_tickets %></td>
+                              <td><%= f.price_per_ticket %></td>
+                              <td><%= f.sold_tickets %></td>
+                              <td><%= f.sold_tickets * f.price_per_ticket %>,-</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                          <ul class="list-inline">
+                            <li><strong>Premier: </strong></li>
+                            <% f.awards.map do |award| %>
+                                <li><%= award.name %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="panel-footer">
+          <%= link_to "Vis alle tidligere trekninger", admin_previous_lottery_path, class: "btn btn-info" %>
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+        function addAwardField() {
+            $(".award").first().clone().val("").removeAttr('required').appendTo(".awards");
+        }
+    </script>
+
+  </div>
+</div>

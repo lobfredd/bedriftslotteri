@@ -1,0 +1,84 @@
+<% provide(:title, "Min Side") %>
+
+<div class="container">
+  <div class="row">
+    <!-- start leftmost panel -->
+    <div class="col-lg-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Siste kjøp</div>
+        <!-- Table -->
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Dato</th>
+            <th>Antall</th>
+            <th>Totalbeløp</th>
+            <th>Premie</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user.participated_lotteries.each do |lottery| %>
+              <tr>
+                <td><%= prettify_date(lottery.start_date) %></td>
+                <td><%= lottery.tickets_bought_by(@user).count %></td>
+                <td><%= lottery.total_price_tickets_bought_by(@user) %></td>
+                <td>
+                  <% if lottery.user_won?(@user) %><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <% end %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- end leftmost panel -->
+
+    <!-- start middle panel -->
+    <div class="col-lg-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Dine gevinster</div>
+        <!-- Table -->
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Dato</th>
+            <th>Premie</th>
+            <th>Del</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user.winner_tickets.each do |ticket| %>
+              <tr>
+                <td><%= prettify_date(ticket.lottery.start_date) %></td>
+                <td><%= ticket.award.name %></td>
+                <td>
+                  <a id="fb-share" onClick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=Jeg har vunnet!&p[summary]=En herlig vinflaske i dagens vinlotteri&p[url]=www.bedriftslotteri.no','sharer','toolbar=0,status=0,width=580,height=325');" href="javascript: void(0)"><i class="fa fa-facebook-square"></i></a>
+                  <a href="http://twitter.com/home?status=Jeg har vunnet <%= ticket.award.name %> i dagens bedriftslotteri. Kjempeglad! %23bedriftslotteri www.bedriftslotteri.no" title="Share on Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- end middle panel -->
+
+    <!-- start rightmost panel -->
+    <div class="col-lg-3">
+      <div class="panel panel-primary">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Personlig informasjon</div>
+        <div class="panel-body">
+
+          <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item">Navn: <%= [@user.first_name, @user.last_name].join(' ') %></li>
+            <li class="list-group-item">Epost: <%= @user.email %></li>
+          </ul>
+          <%= link_to "Endre opplysninger", edit_user_path, class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+    <!-- end rightmost panel -->
+  </div>
+</div>

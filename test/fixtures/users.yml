@@ -1,0 +1,52 @@
+testCamelCompanyUser:
+  role: company
+  email: f@f.com
+  company: testCamel
+
+User1:
+  first_name: User1
+  role: user
+  email: f@f1.com
+  company: testCamel
+
+User2:
+  first_name: User2
+  role: user
+  email: f@f2.com
+  company: testCamel
+
+User3:
+  first_name: User3
+  role: user
+  email: f@f3.com
+  company: testCamel
+
+User4:
+  first_name: User4
+  role: user
+  email: f@f4.com
+  company: testCamel
+
+User5:
+  first_name: User5
+  role: user
+  email: f@f5.com
+  company: testCamel
+
+User6:
+  first_name: User6
+  role: user
+  email: f@f6.com
+  encrypted_password: <%= BCrypt::Password.create("12341234").to_s %>>
+  company: testCamel
+
+User7:
+  first_name: User7
+  role: user
+  email: f@f46.com
+  company: testCamel3
+
+CompanyUser:
+  role: company
+  email: f@f99.com
+  company: testCamel

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Rediger brukere</div>
+        <%= form_for @user, url: admin_edit_user_path, html: {class: "form edit_form"} do |f| %>
+            <div class="form-group">
+              <%= f.label "Fornavn", class: "control-label" %>
+              <%= f.text_field :first_name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Etternavn", class: "control-label" %>
+              <%= f.text_field :last_name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Email", class: "control-label" %>
+              <%= f.text_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Opprettet", class: "control-label" %>
+              <%= f.text_field :created_at, class: "form-control", disabled: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Antall premier vunnet", class: "control-label" %>
+              <%= number_field "antall vinn", nil, class: "form-control", value: @user.winner_tickets.count,disabled: true %>
+            </div>
+            <div class="form-group">
+              <%= f.submit class: "btn btn-info", value: "Lagre endringer" %>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+</div>

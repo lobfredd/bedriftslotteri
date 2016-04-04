@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Takk for registreringen,
+  <% if @user.role == 'company' %>
+  <%= @user.company.company_name %>!
+      <% else %>
+  <%= @user.first_name %>!
+      <% end %>
+</h1>
+<p>Vi håper du får nytte av applikasjonen.</p>
+<% if @user.role == 'company' %>
+    <p>Din hemmelige bedriftsnøkkel er: <%= @user.company.key %>. Denne
+    må du distribuere til alle brukere i din bedrift som ønsker å registrere seg og ta i bruk
+    vinlotteriet.</p>
+<% else %>
+    <p>Dersom du har spørsmål vedrørende selve trekningene i din bedrift, anbefaler vi deg å kontakte
+    administrator i ditt firma. Dersom du lurer på tekniske spørsmål eller opplever problemer ber vi deg benytte
+    skjemaet på nettsiden, eller sende en epost til post@bedriftslotteri.no</p>
+<% end %>
+</body>
+</html>

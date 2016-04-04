@@ -1,0 +1,164 @@
+#Admin
+Feature: Lotteries
+    As a company administrator
+    I want to add a lottery
+    Because I want the Users within my Company to buy tickets
+
+    Scenario: Admin adds a lottery to lotteries
+        Given I'm a logged-in Admin
+        When I go to the administrate lotteries page
+        And I enter number of tickets
+        And the price per ticket
+        And the start date for the lottery
+        And I click "Opprett lotteri"
+        Then the quantity of my lotteries should go up
+        And the Users within my Company should recieve an updated index view
+        And the Users should be able to buy tickets from the newly added lottery
+
+Feature: Statistics
+    As an Admin
+    I want to see statistic related to the company I manage
+    Because I want to view this information
+
+    Scenario: Show statistics
+        Given I'm a logged-in Admin
+        When I go to the statistics page
+        Then I should see today sold tickets
+        And total amount of tickets sold
+        And todays total earnings for the company
+        And total amount of earnings for the company
+
+Feature: Users
+    As an Admin
+    I want to edit the Users within my company
+    Because I want to manage them in case of mistakes etc
+
+    Scenario: Admin proceeds to the edit user page
+        Given I'm a logged-in Admin
+        When I go to the edit users page
+        And I press "Rediger" at one of the users row
+        Then I should be redirected to the edit user page
+
+    Scenario: Admin edits a user
+        Given I'm a logged-in Admin
+        When I go to the edit user page
+        And I edit either fornavn, etternavn or email
+        And press "Lagre endringer"
+        Then I should be redirected to the edit users page
+        And the user should be edited with those fields
+
+    Scenario: Admin deletes User
+        Given I'm a logged-in Admin
+        When I go to the edit users page
+        And I press "Slett" on a Users row
+        Then the User should be deleted
+        And the page should be refreshed
+
+Feature: Log out
+    As an Admin
+    I want to log out
+    Because I want to prevent others from using my account
+
+    Scenario: log out
+        Given I'm a logged-in Admin
+        When I press log out
+        Then my account should be logged out
+
+
+#User
+Feature: Tickets
+    As an Employee
+    I want to purchase a ticket from the current lottery
+    Because I want to have a chance to win an award
+
+    Scenario: User proceeds to the "Kjøp lodd" interface
+        Given I'm a logged-in User
+        When I go to the main page
+        And I press "Kjøp nå"
+        Then the "Kjøp lodd" interface appears
+
+    Scenario: User proceeds to the Stripe interface
+        Given I'm a logged-in User
+        When I go to the "Kjøp lodd" interface
+        And I enter number of tickets
+        And I press "Kjøp"
+        Then the Stripe interface appears
+
+    Scenario: User buys a ticket from the current lottery
+        Given I'm a logged-in User
+        When I go to the Stripe interface
+        And I enter my card number
+        And I enter my MM/YY
+        And I enter my CVC
+        And I press "Pay X kr"
+        Then the quantity of my tickets should increment
+        And my bank acount amount should decrease
+
+Feature: Contactform
+    As an Employee
+    I want to send a contact form to the creators of this site
+    Because I want to have my problems in the contact form solved
+
+    Scenario: User sends a contactform to superadmins
+        Given I'm a logged-in User
+        When I go to the "Kontakt" page
+        And I pick error
+        And I select a picture of the error
+        And I enter a message explaining the error
+        And I press "Send"
+        Then the attributes should be sent by email to the superadmins
+        And I should get a copy to my email
+
+Feature: Statistics
+    As an Employee
+    I want to see statistic related to the company I belong to
+    Because I want to view this information
+
+    Scenario: Show statistics
+        Given I'm a logged-in User
+        When I go to the statistics page
+        Then I should see today sold tickets
+        And total amount of tickets sold
+        And todays total earnings for the company
+        And total amount of earnings for the company
+
+Feature: User settings
+    As an Employee
+    I want to change my User settings
+    Because I for example changed my email adress
+
+    Scenario: Change email address
+        Given I'm a logged-in User
+        When I go to the my page page
+        And I press "Endre opplysninger"
+        Then I should be redirected to the "Endre opplysninger" page
+
+    Scenario: Change email address
+        Given I'm a logged-in User
+        When I go to the "Endre opplysninger" page
+        And I replace the email field
+        And I press Update information
+        Then I am redirected to the my page page
+        And my email address should be updated
+
+Feature: Log out
+    As an Employee
+    I want to log out
+    Because I want to prevent others from using my account
+
+    Scenario: log out
+        Given I'm a logged-in User
+        When I press log out
+        Then my account should be logged out
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<% 5.times do |i| %>
+ticket_<%= i+1 %> :
+  user: User1
+  lottery: <%= "lottery#{i+1}" %>
+  won: true
+<% end %>
+
+<% 4.times do |i| %>
+ticket2_<%= i+1 %>:
+  user: User2
+  lottery: <%= "lottery#{i+1}" %>
+  won: true
+<% end %>
+
+<% 3.times do |i| %>
+ticket3_<%= i+1 %>:
+  user: User3
+  lottery: <%= "lottery#{i+1}" %>
+  won: true
+<% end %>
+
+<% 2.times do |i| %>
+ticket4_<%= i+1 %>:
+  user: User4
+  lottery: <%= "lottery#{i+1}" %>
+  won: true
+<% end %>
+
+<% 1.times do |i| %>
+ticket5_<%= i+1 %>:
+  user: User5
+  lottery: <%= "lottery#{i+1}" %>
+  won: false
+<% end %>
+
+ticket6_1:
+  user: User6
+  lottery: lottery6
+  won: false
+
+
+<% 5.times do |i| %>
+ticket7_<%= i+1 %>:
+  user: User7
+  lottery: lottery13
+  won: false
+<% end %>

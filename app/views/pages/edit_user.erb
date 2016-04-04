@@ -1,0 +1,30 @@
+<% provide(:title, "Rediger trekning") %>
+
+<div class="container">
+  <div class="row">
+    <div class="panel">
+      <div class="panel panel-primary">
+
+        <div class="panel-heading">Rediger Bruker</div>
+        <%= form_for @user, url: edit_user_path, html: {class: "form edit_form"} do |f| %>
+            <div class="form-group">
+              <%= f.label "Fornavn", class: "control-label" %>
+              <%= f.text_field :first_name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Etternavn", class: "control-label" %>
+              <%= f.text_field :last_name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Email", class: "control-label" %>
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit class: "btn btn-info", value: "Lagre endringer" %>
+              <%= link_to "Avbryt", minside_path, class: "btn btn-danger" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

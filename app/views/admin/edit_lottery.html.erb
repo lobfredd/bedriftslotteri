@@ -1,0 +1,47 @@
+<% provide(:title, "Rediger trekning") %>
+
+<div class="container">
+  <div class="row">
+    <div class="panel">
+      <div class="panel panel-primary">
+
+        <div class="panel-heading">Rediger Trekning</div>
+        <%= form_for @lottery, url: admin_edit_lottery_path, html: {class: "form edit_form"} do |f| %>
+            <% if flash[:success] %>
+                <%= %>
+            <% end %>
+            <div class="form-group">
+              <%= f.label "Antall Lodd", class: "control-label" %>
+              <%= f.number_field :number_of_tickets, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Pris per lodd", class: "control-label" %>
+              <%= f.number_field :price_per_ticket, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Startdato", class: "control-label" %>
+              <%= f.datetime_select :start_date, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit class: "btn btn-info", value: "Lagre endringer" %>
+            </div>
+        <% end %>
+        <% @lottery.awards.each do |award| %>
+            <%= form_for award, url: admin_edit_award_path, html: {class: "form edit_form"} do |f| %>
+                <%= f.hidden_field :id %>
+                <%= f.hidden_field :lottery_id %>
+                <div class="form-group">
+                  <%= f.label "Premietittel", class: "control-label" %>
+                  <%= f.text_field :name, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.submit class: "btn btn-info", value: "Skift navn" %>
+                </div>
+            <% end %>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>

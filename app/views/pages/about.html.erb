@@ -1,0 +1,56 @@
+<% provide(:title, "Kontakt") %>
+
+<div class="container">
+  <div class="row">
+    <!-- start leftmost panel -->
+    <div class="col-lg-6">
+      <div class="jumbotron">
+        <h1>Om oss</h1>
+
+        <p>Vi er levende opptatt av å levere gode løsninger til dine ansatte gjennom dette
+          digitale bedriftslotteriet.</p>
+
+        <p>Ønsker du å kjøpe tilgang til bedriftslotteriet - eller har du tekniske problemer? Kontakt oss via skjemaet og velg korrekt kategori.</p>
+      </div>
+    </div>
+    <!-- end leftmost panel -->
+
+    <!-- start rightmost panel -->
+    <div class="col-lg-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Kontakt oss</div>
+        <%= form_for @contact_form, multipart: true, url: kontakt_path, html: {class: "form", id: "kontaktform"} do |f| %>
+
+            <div class="form-group">
+              <%= f.label "Ditt navn:", class: "control-label" %>
+              <%= f.text_field :name, class: "form-control", required: "true", value: "#{display_full_name}" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "Din epost:", class: "control-label" %>
+              <%= f.email_field :email, class: "form-control", required: "true", value: "#{display_email}" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "Henvendelsen gjelder: ", class: "control-label" %>
+              <%= f.select(:subject, options_for_select([['Tekniske problemer', 'Tekniske problemer'], ['Salgsspørsmål', 'Salgsspørsmål'], ['Generelt', 'Generelt']]), class: "form-control") %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label "Last opp eventuelle bilder", class: "control-label" %>
+              <%= f.file_field :img %>
+            </div>
+            <div class="form-group">
+              <%= f.label "Din melding:", class: "control-label" %>
+              <%= f.text_area :message, class: "form-control", rows: 3, required: "true" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit class: "btn btn-success", value: "Send" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- end rightmost panel -->
+</div>
+</div>

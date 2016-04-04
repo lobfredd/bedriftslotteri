@@ -1,0 +1,208 @@
+<% provide(:title, "Forside") %>
+
+<div class="container">
+  <div class="row customRow">
+    <h1 class="text-center h1 headers">Endelig en enkel, spennende og kostnadseffektiv måte å organisere lotterier i
+      bedriften på!</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-1">
+
+    </div>
+
+    <div class="col-lg-10">
+      <div class="row customRow">
+        <div class="col-lg-4">
+          <%= image_tag 'magicwand.png', title: "Kredittkort", class: "img-responsive center-block" %>
+          <h3 class="text-center h3">Enkelt!</h3>
+
+          <p class="lead text-center">Å sette opp lotterier er like enkelt som å kjøpe lodd til trekningene. Dette får
+            alle i bedriften til!</p>
+        </div>
+        <div class="col-lg-4">
+          <%= image_tag 'die.png', title: "Spennende", class: "img-responsive center-block" %>
+          <h3 class="text-center h3">Spennende!</h3>
+
+          <p class="lead text-center">Lotterier som bedriften organiserer er spennende og sammensveisende for alle å
+            delta på.</p>
+        </div>
+        <div class="col-lg-4">
+          <%= image_tag 'money.png', title: "Raskt", class: "img-responsive center-block" %>
+          <h3 class="text-center h3">Kostnadseffektivt!</h3>
+
+          <p class="lead text-center">Det er fort gjort å sette opp nye lotterier, selv i store bedrifter, og prisen for løsningen er lav.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-1 ">
+
+      </div>
+    </div>
+  </div>
+  <div class="row customRow">
+    <div class="col-lg-6 col-lg-offset-3">
+      <%= link_to('Skaff bedriftslotteri i dag!', contact_us_path, class: 'btn btn-lg btn-success center-block') %>
+    </div>
+  </div>
+</div>
+<div id="container2">
+  <div class="container">
+    <div class="row customRow">
+      <h1 class="text-center h1 headers">Noen funksjoner vi vet du vil like!</h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-1">
+
+      </div>
+
+      <div class="col-lg-10">
+        <div class="row customRow">
+          <div class="col-lg-4">
+            <%= image_tag 'browser.png', title: 'Fungerer i alle nettlesere', class: 'img-responsive center-block' %>
+            <h3 class="text-center h3">Universal</h3>
+
+            <p class="lead text-center">Lodd kjøper man like enkelt på en PC, som på mobil og nettbrett!</p>
+          </div>
+          <div class="col-lg-4">
+            <%= image_tag 'creditcard.png', title: "Sikkert", class: "img-responsive center-block" %>
+            <h3 class="text-center h3">Kortbetaling</h3>
+
+            <p class="lead text-center">Betalingen for loddene gjør man enkelt og trygt med alle typer kort!</p>
+          </div>
+          <div class="col-lg-4">
+            <%= image_tag 'calendar.png', title: "Automatiske trekninger", class: "img-responsive center-block" %>
+            <h3 class="text-center h3">Automatiske trekninger</h3>
+
+            <p class="lead text-center">Trekningene kan starte automatisk på den dagen og datoen man ønsker!</p>
+          </div>
+        </div>
+
+        <div class="col-lg-1">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="customContainer4">
+  <div class="container">
+    <div class="row customRow">
+      <div class="col-lg-1">
+
+      </div>
+
+      <div class="col-lg-10">
+        <div class="row customRow">
+          <div class="col-lg-4">
+            <%= image_tag 'globe.png', title: 'Enkel innlogging', class: 'img-responsive center-block' %>
+            <h3 class="text-center h3">Enkel innlogging</h3>
+
+            <p class="lead text-center">Alle logger lett inn med mail og passord,- eller Facebook!</p>
+          </div>
+          <div class="col-lg-4">
+            <%= image_tag 'pie-chart.png', title: "Statistikk", class: "img-responsive center-block" %>
+            <h3 class="text-center h3">Statistikk</h3>
+
+            <p class="lead text-center">Se spennende og informativ statistikk om trekningene!</p>
+          </div>
+          <div class="col-lg-4">
+            <%= image_tag 'clock.png', title: "Nedtelling", class: "img-responsive center-block" %>
+            <h3 class="text-center h3">Nedtelling</h3>
+
+            <p class="lead text-center">Alle brukere kan følge nedtellingen til neste trekning, til og med i sanntid!</p>
+          </div>
+        </div>
+
+        <div class="col-lg-1">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row customRow">
+    <h1 class="text-center h1 headers">Noen tall fra fornøyde brukere!</h1>
+  </div>
+  <div class="row customRow">
+    <div class="col-sm-3">
+      <div class="tile-progress tile-primary">
+        <div class="tile-header">
+          <h3>Dagens</h3>
+          <span>totale antall solgte lodd</span>
+        </div>
+        <div class="tile-progressbar">
+          <span data-fill="65,5 %" style="width: 65.5%;"></span>
+        </div>
+        <div class="tile-footer">
+          <h4>
+            <span class="pct-counter">65.5</span>% økning
+          </h4>
+          <span>i forhold til gårsdagens salg</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="tile-progress tile-red">
+        <div class="tile-header">
+          <h3>Totalt</h3>
+          <span>antall solgte lodd</span>
+        </div>
+        <div class="tile-footer">
+          <h4>
+            <%= @sold_tickets %>
+          </h4>
+          <span>... så langt</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="tile-progress tile-blue">
+        <div class="tile-header">
+          <h3>Dagens</h3>
+          <span>totale omsetning</span>
+        </div>
+        <div class="tile-progressbar">
+          <span data-fill="78 %" style="width: 78%;"></span>
+        </div>
+        <div class="tile-footer">
+          <h4>
+            <span class="pct-counter">78</span>% økning
+          </h4>
+          <span>i forhold til gårsdagen</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="tile-progress tile-aqua">
+        <div class="tile-header">
+          <h3>Total</h3>
+          <span>omsetning</span>
+        </div>
+        <div class="tile-footer">
+          <h4>
+            <span><%= @sum_sold_tickets %></span>
+          </h4>
+          <span>norske kroner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="container3">
+  <div class="container">
+    <div class="row customRow customFooterRow">
+      <h1 class="text-center h1 headers">Prøv bedriftslotteri i dag!</h1>
+
+      <p class="text-center ">Ingen bindingstid! Enkel prising! Mye moro!</p>
+
+      <div class="col-lg-6 col-lg-offset-3">
+        <%= link_to('Skaff bedriftslotteri i dag!', contact_us_path, class: 'btn btn-lg btn-success center-block') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "layouts/footer" %>

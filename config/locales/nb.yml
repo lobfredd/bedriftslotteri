@@ -1,0 +1,23 @@
+nb:
+  activerecord:
+    attributes:
+      user:
+        first_name: "Fornavn"
+        last_name: "Etternavn"
+        email: "Epost"
+        password: "Passord"
+        password_confirmation: "Bekreft passord"
+      lottery:
+        date:
+          order:
+            - :day
+            - :month
+            - :year
+  helpers:
+    label:
+      user:
+        remember_me: 'Husk meg'
+  time:
+      formats:
+       special_datetime: "%A %e. %B"
+       admin_datetime: "%A %e. %B, kl. %H:%M"

@@ -1,0 +1,251 @@
+<% provide(:title, "Hjem") %>
+<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+<script type="text/javascript">
+    function calculateTotal(selected) {
+        var cost = $("#pricePerTicket").text();
+        $("#totalprice").text(selected.value * cost);
+    }
+    var handler;
+    $(document).ready(function() {
+        this.handler = getHandler();
+    });
+
+
+    function getHandler() {
+        if (this.handler == null) {
+            this.handler = StripeCheckout.configure({
+                key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+                token: function (token) {
+                    $form = $("#buyForm");
+                    $form.find("#stripeToken").val(token.id)
+                    $form.submit();
+                }
+            });
+        }
+        return this.handler;
+    }
+
+    function selectLottery(id, pricePerTicket) {
+        $("#lotteryid").val(id);
+        $("#pricePerTicket").text(pricePerTicket);
+        $("#tickets").trigger('onchange');
+    }
+
+    function pay() {
+        getHandler().open({
+            name: 'Sørlie Computing',
+            description: 'Kjøp av lodd',
+            currency: "nok",
+            amount: $("#totalprice").text() * 100,
+            email: "<%= @user.email %>"
+        });
+    }
+
+    // Close Checkout on page navigation
+    $(window).on('popstate', function () {
+        handler.close();
+    });
+
+</script>
+<div class="container">
+  <div class="row customRow">
+    <div class="col-lg-2"></div>
+    <%= render 'layouts/countdown_timer' %>
+    <div class="col-lg-2">
+    </div>
+  </div>
+  <% if @upcoming_lotteries.first %>
+      <script>
+          startCountdown(<%= @upcoming_lotteries.first.start_date.to_i %>);
+      </script>
+      <div class="row customRow">
+
+        <div class="col-lg-2">
+        </div>
+
+        <div class="col-lg-8">
+          <div class="form-inline text-center">
+
+            <div class="form-group">
+              <p class="lead">Gjenværende lodd: <%= @upcoming_lotteries.first.tickets_left %></p>
+            </div>
+            <div class="form-group">
+              <button type="button" onclick="selectLottery(<%= @upcoming_lotteries.first.id %>, <%= @upcoming_lotteries.first.price_per_ticket %> )" data-toggle="modal" data-target="#ticketModal" class="btn btn-lg btn-success">Kjøp
+                nå
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+        </div>
+      </div>
+
+      </div>
+      <div class="rowSeparator">
+        <div class="container">
+          <div class="row customRow2">
+
+            <div class="col-lg-2">
+            </div>
+
+            <div class="col-lg-8">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Fremtidige trekninger</div>
+                <div class="panel-body">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Når</th>
+                      <th>Gjenværende lodd</th>
+                      <th>Antall premier</th>
+                    </thead>
+                    <tbody>
+                    <% @upcoming_lotteries.each do |lottery| %>
+                        <tr>
+                          <td><%= prettify_date(lottery.start_date) %></td>
+                          <td><%= lottery.tickets_left %></td>
+                          <td><a href="#/" data-toggle="tooltip" title="<%= list_awards lottery %>"><%= lottery.awards.count %></a>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-sm btn-info" onclick="selectLottery(<%= lottery.id %>, <%= lottery.price_per_ticket %>)" data-toggle="modal" data-target="#ticketModal">Kjøp
+                              nå
+                            </button>
+                          </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-lg-2">
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+  <% else %>
+      <h1 class="h1 text-center">Ingen lotterier opprettet enda :(</h1>
+  <% end %>
+  </div>
+  <div class="container">
+    <div class="row customRow2">
+      <div class="col-lg-2">
+
+      </div>
+      <div class="col-lg-8">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Topp 3 vinnere</div>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Rangering</th>
+              <th>Navn</th>
+              <th>Premier vunnet</th>
+            </thead>
+            </tr>
+            <tbody>
+            <% counter = 0 %>
+            <% @leader_board.each { |winner| %>
+                <tr>
+                  <td><%= counter += 1 %></td>
+                  <td><%= winner[0] %></td>
+                  <td><%= winner[1] %></td>
+                </tr>
+            <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-lg-2">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- start tickets row -->
+    <div class="row">
+      <!-- filler columns -->
+      <div class="col-lg-2">
+
+      </div>
+      <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="ticketModalLabel">Kjøp lodd</h4>
+              <br>
+
+              <p class="lead">
+                Pris per lodd: <span id="pricePerTicket"></span>,-
+              </p>
+            </div>
+            <div class="modal-body">
+              <!-- form for kjøp  - må endres ! -->
+              <%= form_for @ticket, method: :post, url: charges_path, html: {class: "form form-inline", id: "buyForm"} do |f| %>
+                  <input type="hidden" name="stripeToken" id="stripeToken">
+                  <input type="hidden" name="lotteryid" id="lotteryid">
+
+                  <div class="form-group">
+                    <%= f.label "Antall Lodd", class: "control-label" %>
+                    <select name="tickets" class="combobox form-control" id="tickets" onchange="calculateTotal(this)">
+                      <option value="1">1</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                    <label id="totalPriceLabel">Totalpris: <span id="totalprice"></span>,-</label>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                    <button onclick="pay()" type="button" class="btn btn-primary">Kjøp</button>
+                  </div>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- end tickets column -->
+    <!--filler column 2 -->
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+
+  <!-- end filler column 2 -->
+  <div class="rowSeparator">
+    <div class="container">
+      <div class="row customRow2">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= prettify_decimal @todays_winning_chance %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @todays_winning_chance %>%;">
+              <span class="sr-only"><%= prettify_decimal @todays_winning_chance %>% Complete</span>
+            </div>
+            <span class="progress-type">Dagens vinnersjanse</span>
+            <span class="progress-completed"><%= prettify_decimal @todays_winning_chance %></span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= prettify_decimal @all_time_winning_chance %>%" aria-valuemin="0" aria-valuemax="100" style="width: <%= @all_time_winning_chance %>%">
+              <span class="sr-only"><%=prettify_decimal @all_time_winning_chance%> Complete (success)</span>
+            </div>
+            <span class="progress-type">Gjennomsnittlig vinnersjanse</span>
+            <span class="progress-completed"><%= prettify_decimal @all_time_winning_chance %></span>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
