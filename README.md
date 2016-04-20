@@ -6,7 +6,7 @@ vil ønske å ta den i bruk.
 ---
 
 ## Hvordan starte prosjektet
-Løsningen kan nåes her `https://pure-castle-2703.herokuapp.com/`
+Løsningen kan nåes her `https://bedriftslotteri.herokuapp.com/`
 Domenet bedriftslotteri.no er også kjøpt opp og klargjort for en eventuell deployment.
 
 ## Oppsett av utviklermiljø
